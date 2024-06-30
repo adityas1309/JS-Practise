@@ -10,3 +10,9 @@ function add(a, b) {
     return a + b;
 }
 console.log(add(5, 3)); // 8
+
+// Question: 3. Check even or odd
+function isEven(num) {
+    return num % 2 === 0;
+}
+console.log(isEven(4)); // true

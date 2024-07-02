@@ -22,3 +22,9 @@ function simpleInterest(p, r, t) {
     return (p * r * t) / 100;
 }
 console.log(simpleInterest(1000, 5, 2)); // 100
+
+// Question: 9. Calculate array sum
+function arraySum(arr) {
+    return arr.reduce((acc, val) => acc + val, 0);
+}
+console.log(arraySum([1, 2, 3, 4])); // 10

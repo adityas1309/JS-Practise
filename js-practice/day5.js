@@ -35,3 +35,14 @@ function sphereVolume(radius) {
     return (4/3) * Math.PI * Math.pow(radius, 3);
 }
 console.log(sphereVolume(3).toFixed(2)); // 113.10
+
+// Question: 24. Convert string to title case
+
+// Title case transformation
+function toTitleCase(str) {
+    return str.toLowerCase().split(' ').map(word => 
+        // Capitalize first letter of each word
+        word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+}
+console.log(toTitleCase('hello world')); // 'Hello World'

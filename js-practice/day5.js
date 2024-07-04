@@ -17,3 +17,12 @@ function countVowels(str) {
     return matches ? matches.length : 0;
 }
 console.log(countVowels('JavaScript')); // 3
+
+// Question: 25. Remove duplicates from array
+
+// Using Set for unique values
+function removeDuplicates(arr) {
+    // Convert Set back to array
+    return [...new Set(arr)];
+}
+console.log(removeDuplicates([1,2,2,3])); // [1,2,3]

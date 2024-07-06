@@ -16,3 +16,12 @@ function arrayAverage(arr) {
     return arr.reduce((a, b) => a + b, 0) / arr.length;
 }
 console.log(arrayAverage([4, 2, 8, 6])); // 5
+
+// Question: 35. Convert array to string
+
+// Join elements with custom separator
+function arrayToString(arr, separator = ', ') {
+    // Use array join method
+    return arr.join(separator);
+}
+console.log(arrayToString(['a', 'b', 'c'], '-')); // 'a-b-c'

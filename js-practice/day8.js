@@ -40,3 +40,12 @@ function findIndex(arr, element) {
     return -1;
 }
 console.log(findIndex(['a', 'b', 'c'], 'b')); // 1
+
+// Question: 40. Remove falsy values from array
+
+// Filter out falsy values
+function compactArray(arr) {
+    // Use Boolean constructor as filter
+    return arr.filter(Boolean);
+}
+console.log(compactArray([0, 1, false, '', 3])); // [1, 3]

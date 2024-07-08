@@ -39,3 +39,12 @@ function arraysEqual(arr1, arr2) {
         arr1.every((val, i) => val === arr2[i]);
 }
 console.log(arraysEqual([1,2], [1,2])); // true
+
+// Question: 47. Check integer
+
+// Verify number is integer
+function isInteger(num) {
+    // Compare with rounded value
+    return num === Math.floor(num);
+}
+console.log(isInteger(5.0)); // true

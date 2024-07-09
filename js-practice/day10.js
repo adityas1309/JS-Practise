@@ -18,3 +18,13 @@ function sortNumbers(arr) {
     return arr.sort((a, b) => a - b);
 }
 console.log(sortNumbers([3, 1, 4, 2])); // [1, 2, 3, 4]
+
+// Question: 49. Check anagrams
+
+// Compare sorted character arrays
+function areAnagrams(str1, str2) {
+    // Normalize and sort characters
+    const normalize = s => s.toLowerCase().split('').sort().join('');
+    return normalize(str1) === normalize(str2);
+}
+console.log(areAnagrams('listen', 'silent')); // true

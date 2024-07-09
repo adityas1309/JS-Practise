@@ -28,3 +28,14 @@ function areAnagrams(str1, str2) {
     return normalize(str1) === normalize(str2);
 }
 console.log(areAnagrams('listen', 'silent')); // true
+
+// Question: 48. Truncate string with ellipsis
+
+// Limit string length with truncation
+function truncateString(str, maxLength) {
+    // Add ellipsis if truncated
+    return str.length > maxLength 
+        ? str.slice(0, maxLength) + '...' 
+        : str;
+}
+console.log(truncateString('Long text here', 8)); // 'Long tex...'

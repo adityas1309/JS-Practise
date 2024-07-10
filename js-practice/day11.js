@@ -23,3 +23,16 @@ function sumOfSquares(numbers) {
     );
 }
 console.log(sumOfSquares([2, 3])); // 13
+
+// Question: 53. Calculate days between dates
+
+// Date difference calculation
+function daysBetween(date1, date2) {
+    // Convert milliseconds to days
+    const diff = Math.abs(date2 - date1);
+    return Math.floor(diff / (1000 * 60 * 60 * 24));
+}
+console.log(daysBetween(
+    new Date('2023-01-01'), 
+    new Date('2023-01-10')
+)); // 9

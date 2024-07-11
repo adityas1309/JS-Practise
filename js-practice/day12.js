@@ -27,3 +27,13 @@ function isPowerOfTwo(n) {
     return n > 0 && (n & (n - 1)) === 0;
 }
 console.log(isPowerOfTwo(16)); // true
+
+// Question: 58. Validate URL format
+
+// Basic URL validation with regex
+function isValidURL(url) {
+    // Check URL pattern
+    const pattern = /^(https?:\/\/)[\w.-]+\.[a-z]{2,}(\/.*)?$/i;
+    return pattern.test(url);
+}
+console.log(isValidURL('https://example.com')); // true

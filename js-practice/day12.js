@@ -37,3 +37,24 @@ function isValidURL(url) {
     return pattern.test(url);
 }
 console.log(isValidURL('https://example.com')); // true
+
+// Question: 1. Implement debounce function
+```javascript
+// Returns a debounced version of the input function
+function debounce(func, delay) {
+    let timeoutId;
+    // Closure preserves timeoutId between calls
+    return (...args) => {
+        // Clear previous pending execution
+        clearTimeout(timeoutId); 
+        // Schedule new execution
+        timeoutId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+}
+
+// Usage example:
+const debouncedSearch = debounce((query) => {
+    console.log(`Searching: ${query}`);
+}, 300);

@@ -96,3 +96,29 @@ function throttle(func, limit) {
 
 // Usage example:
 window.addEventListener('resize', throttle(handleResize, 200));
+
+// Question: 10. Deep object comparison
+```javascript
+// Recursive deep equality check
+function deepEqual(a, b) {
+    // Primitive comparison
+    if (a === b) return true;
+    
+    // Type check
+    if (typeof a !== 'object' || typeof b !== 'object' || a === null || b === null) {
+        return false;
+    }
+    
+    // Compare keys
+    const keysA = Object.keys(a);
+    const keysB = Object.keys(b);
+    if (keysA.length !== keysB.length) return false;
+    
+    // Recursive property comparison
+    return keysA.every(key => 
+        keysB.includes(key) && deepEqual(a[key], b[key])
+    );
+}
+
+// Test case:
+console.log(deepEqual({ a: [1,2] }, { a: [1,2] })); // true

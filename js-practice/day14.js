@@ -66,3 +66,33 @@ class LRUCache {
         }
     }
 }
+
+// Question: 9. Implement throttle function
+```javascript
+// Ensures function called at most once per interval
+function throttle(func, limit) {
+    let lastCall = 0;
+    let pending = false;
+    
+    return (...args) => {
+        const now = Date.now();
+        // Check if enough time has passed
+        if (now - lastCall >= limit) {
+            lastCall = now;
+            func.apply(this, args);
+        } else {
+            // Schedule delayed execution
+            if (!pending) {
+                pending = true;
+                setTimeout(() => {
+                    pending = false;
+                    func.apply(this, args);
+                    lastCall = Date.now();
+                }, limit - (now - lastCall));
+            }
+        }
+    };
+}
+
+// Usage example:
+window.addEventListener('resize', throttle(handleResize, 200));

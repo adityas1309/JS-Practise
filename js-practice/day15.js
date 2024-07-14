@@ -54,3 +54,29 @@ class PubSub {
         this.subscribers[topic] = (this.subscribers[topic] || []).filter(fn => fn !== callback);
     }
 }
+
+// Question: 18. Rate limiter implementation
+```javascript
+class RateLimiter {
+    constructor(limit, windowMs) {
+        this.requests = new Map();
+        this.limit = limit;
+        this.windowMs = windowMs;
+    }
+
+    check(key) {
+        const now = Date.now();
+        const entry = this.requests.get(key) || { count: 0, timer: null };
+        
+        if (now - entry.start > this.windowMs) {
+            entry.count = 0;
+            entry.start = now;
+        }
+
+        if (entry.count >= this.limit) return false;
+        
+        entry.count++;
+        this.requests.set(key, entry);
+        return true;
+    }
+}

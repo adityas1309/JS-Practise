@@ -61,3 +61,22 @@ class Singleton {
 const instance1 = Singleton.getInstance();
 const instance2 = Singleton.getInstance();
 console.log(instance1 === instance2); // true
+
+// Question: 23. Observer with Proxy
+```javascript
+function createObservable(target) {
+    const observers = new Set();
+    
+    return new Proxy(target, {
+        set(obj, prop, value) {
+            // Notify observers on change
+            const prev = obj[prop];
+            obj[prop] = value;
+            observers.forEach(fn => fn(prop, prev, value));
+            return true;
+        }
+    });
+}
+
+// Usage:
+const observable = createObservable({ count: 0 });

@@ -109,3 +109,28 @@ class Container {
 // Usage:
 const container = new Container();
 container.register('api', c => new ApiService());
+
+// Question: 29. Virtual DOM diffing (simplified)
+```javascript
+function diff(oldNode, newNode) {
+    const patches = [];
+    
+    function walk(oldNode, newNode, index) {
+        if (!newNode) {
+            patches.push({ type: 'REMOVE', index });
+        } else if (typeof oldNode !== typeof newNode) {
+            patches.push({ type: 'REPLACE', index, node: newNode });
+        } else if (oldNode.type !== newNode.type) {
+            patches.push({ type: 'UPDATE', index, props: newNode.props });
+        }
+        // Recursive child diffing
+        if (oldNode.children) {
+            for (let i = 0; i < Math.max(oldNode.children.length, newNode.children.length); i++) {
+                walk(oldNode.children[i], newNode.children[i], i);
+            }
+        }
+    }
+    
+    walk(oldNode, newNode, 0);
+    return patches;
+}

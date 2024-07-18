@@ -26,3 +26,31 @@ class HistoryManager {
             : null;
     }
 }
+
+// Question: 36. Dependency graph resolver
+```javascript
+function resolveDependencies(graph) {
+    const resolved = [];
+    const visiting = new Set();
+    
+    function visit(node) {
+        if (resolved.includes(node)) return;
+        if (visiting.has(node)) throw new Error('Cycle detected');
+        
+        visiting.add(node);
+        graph[node].forEach(visit);
+        visiting.delete(node);
+        resolved.push(node);
+    }
+    
+    Object.keys(graph).forEach(visit);
+    return resolved;
+}
+
+// Test:
+const graph = {
+    a: ['b'], 
+    b: ['c'], 
+    c: []
+};
+console.log(resolveDependencies(graph)); // ['c', 'b', 'a']

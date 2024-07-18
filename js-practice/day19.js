@@ -96,3 +96,32 @@ function createAsyncIterable() {
 
 // Usage:
 const asyncIterable = createAsyncIterable();
+
+// Question: 37. Binary heap implementation
+```javascript
+class MinHeap {
+    constructor() {
+        this.heap = [];
+    }
+
+    insert(value) {
+        this.heap.push(value);
+        this._bubbleUp(this.heap.length - 1);
+    }
+
+    extract() {
+        const min = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        this._sinkDown(0);
+        return min;
+    }
+
+    _bubbleUp(index) {
+        while (index > 0) {
+            const parent = Math.floor((index - 1) / 2);
+            if (this.heap[parent] <= this.heap[index]) break;
+            [this.heap[parent], this.heap[index]] = [this.heap[index], this.heap[parent]];
+            index = parent;
+        }
+    }
+}

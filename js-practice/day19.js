@@ -54,3 +54,19 @@ const graph = {
     c: []
 };
 console.log(resolveDependencies(graph)); // ['c', 'b', 'a']
+
+// Question: 40. Concurrent promise batcher
+```javascript
+async function batchPromises(items, processFn, batchSize = 10) {
+    const results = [];
+    for (let i = 0; i < items.length; i += batchSize) {
+        const batch = items.slice(i, i + batchSize);
+        results.push(...await Promise.all(
+            batch.map(item => processFn(item))
+        ));
+    }
+    return results;
+}
+
+// Usage:
+batchPromises(urls, fetchUrl, 5);

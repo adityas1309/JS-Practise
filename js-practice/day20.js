@@ -94,3 +94,14 @@ class AsyncRange {
         console.log(num); // Logs 1-5 with 100ms delay
     }
 })();
+
+// Question: 43. Template string parser
+```javascript
+function parseTemplate(str, data) {
+    return str.replace(/\${(.*?)}/g, (match, key) => {
+        return data[key.trim()] || '';
+    });
+}
+
+// Usage:
+parseTemplate('Hello ${name}!', { name: 'Alice' }); // 'Hello Alice!'

@@ -40,3 +40,23 @@ const user = { name: 'Alice' };
 observe(user, 'name', (newVal, oldVal) => {
     console.log(`Name changed from ${oldVal} to ${newVal}`);
 });
+
+// Question: 47. Priority promise queue
+```javascript
+class PriorityPromiseQueue {
+    constructor() {
+        this.queue = [];
+    }
+
+    add(task, priority = 0) {
+        this.queue.push({ task, priority });
+        this.queue.sort((a, b) => b.priority - a.priority);
+    }
+
+    async run() {
+        while (this.queue.length) {
+            const { task } = this.queue.shift();
+            await task();
+        }
+    }
+}

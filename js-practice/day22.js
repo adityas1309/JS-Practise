@@ -46,3 +46,31 @@ class TreeNode {
         }
     }
 }
+
+// Question: 54. Concurrent task queue with pause
+```javascript
+class ConcurrentQueue {
+    constructor(concurrency = 4) {
+        this.pending = [];
+        this.running = 0;
+        this.concurrency = concurrency;
+    }
+
+    add(task) {
+        return new Promise((resolve, reject) => {
+            this.pending.push({ task, resolve, reject });
+            this.next();
+        });
+    }
+
+    next() {
+        while (this.running < this.concurrency && this.pending.length) {
+            const { task, resolve, reject } = this.pending.shift();
+            this.running++;
+            task().then(resolve, reject).finally(() => {
+                this.running--;
+                this.next();
+            });
+        }
+    }
+}

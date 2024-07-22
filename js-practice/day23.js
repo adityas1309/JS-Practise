@@ -120,3 +120,21 @@ class PriorityEventDispatcher {
         handlers.forEach(({ handler }) => handler(...args));
     }
 }
+
+// Question: 55. Deep merge objects
+```javascript
+function deepMerge(target, source) {
+    const output = { ...target };
+    for (const key of Object.keys(source)) {
+        if (isObject(source[key]) && isObject(target[key])) {
+            output[key] = deepMerge(target[key], source[key]);
+        } else {
+            output[key] = source[key];
+        }
+    }
+    return output;
+}
+
+function isObject(item) {
+    return item && typeof item === 'object' && !Array.isArray(item);
+}

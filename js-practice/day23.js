@@ -39,3 +39,31 @@ function createBinder(initial = {}) {
 
     return proxy;
 }
+
+// Question: 57. Async mutex implementation
+```javascript
+class AsyncMutex {
+    constructor() {
+        this.queue = [];
+        this.locked = false;
+    }
+
+    acquire() {
+        return new Promise(resolve => {
+            if (!this.locked) {
+                this.locked = true;
+                return resolve();
+            }
+            this.queue.push(resolve);
+        });
+    }
+
+    release() {
+        if (this.queue.length) {
+            const next = this.queue.shift();
+            next();
+        } else {
+            this.locked = false;
+        }
+    }
+}
